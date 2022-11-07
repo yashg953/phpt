@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <?php
+class mobile{
+  public $title;
+  public $price;
+  
+  
+  function set_name($name){
+    $this->title = $name;
+  }
+  function get_name(){
+    echo $this->title;
+  }
+  function set_price($price){
+    $this->price = $price;
+  }
+  function get_price(){
+    echo $this->price;
+  }
+  
+}
+
+$samsung = new mobile();
+$samsung->set_name("s22 ultra");
+$samsung->get_name();
+echo "<br>";
+$samsung->set_price(110000);
+$samsung->get_price();
+?>
+    
+</body>
+</html>
