@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="/phpt/dir/dir2">omneelab</a>
+  <a class="navbar-brand" href="/phpt/dir/dir2/home.php">omneelab</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
@@ -8,7 +8,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
         <a class="nav-link" href="/phpt/dir/dir2/welcome.php">Home <span class="sr-only">(current)</span></a>
-      </li>
+      </li> 
       <li class="nav-item">
         <a class="nav-link" href="/phpt/dir/dir2/login.php">Login</a>
       </li>
@@ -17,6 +17,7 @@
       </li>
       <li class="nav-item">
         <a class="nav-link" href="/phpt/dir/dir2/logout.php">logout</a>
+        
       </li>
     </ul>
     <div>

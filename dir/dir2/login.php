@@ -8,18 +8,37 @@ $conn = mysqli_connect($servername,$username,$password,$db);
 if(!$conn){
     die("we failed to connect ".mysqli_connect_error());
 }
-$login= false;
 $showError = false;
 $username = $_POST["username"];
 $password = $_POST["password"];
 
 
-  $sql = "select * from user where username ='$username' and password = '$password'";
-   $result = mysqli_query($conn,$sql);
-   $num = mysqli_num_row($result);
 
-   if($num == 1 ){
-    $login= true;
+  $sql = "select * from user1 where username ='$username' and password = '$password'";
+   $result = mysqli_query($conn,$sql);
+   $p = mysqli_fetch_assoc($result);
+   $num = mysqli_num_rows($result);
+   if($num == 1 )
+   {
+      session_start();
+      $_SESSION['username'] =$p['username'];
+      $_SESSION['phone'] = $p['phone'];
+      $_SESSION['email'] = $p['email'];
+      $_SESSION['no']  = $p['id'];
+      $_SESSION['conn'] = $conn;
+      if($p['usertype']=='admin'){
+        header("location: admin.php");
+        $_SESSION['loggedin']= true;
+
+      }else{
+        header("location: welcome.php");
+        $_SESSION['loggedin']= true;
+
+      }
+
+      
+
+      
    }
     else {
         $showError = "invlid credentials";
@@ -27,12 +46,7 @@ $password = $_POST["password"];
 
     }
 
-
-
-}
-
-
-
+  }
 ?>
 <!doctype html>
 <html lang="en">
@@ -49,16 +63,7 @@ $password = $_POST["password"];
   <body>
     <h1></h1>
       <?php require'partials/_nav.php';?>
-      <?php
-      if($login){
-      echo '<div class="alert alert-warning alert-success fade show" role="alert">
-      <strong>success!</strong> You are logged in 
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>';
-      }
-    ?>
+   
        <div class="contianer">
         <h1 class="text-center">LOGIN to our website</h1>
         <form action="/phpt/dir/dir2/login.php" method="post" >
@@ -71,6 +76,7 @@ $password = $_POST["password"];
     <label for="exampleInputPassword1">Password</label>
     <input type="password" class="form-control" id="password" name="password"  placeholder="Password">
   </div>
+
 
   <button type="submit" class="btn btn-primary">login</button>
 </form>

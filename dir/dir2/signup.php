@@ -12,17 +12,28 @@ $showAlert= false;
 $username = $_POST["username"];
 $password = $_POST["password"];
 $cpassword = $_POST["cpassword"];
+$email = $_POST["email"];
 $exits=false;   
-
-if($password == $cpassword && $exits==false){
-   $sql = "INSERT INTO `user` (`username`, `password`, `dt`) VALUES ('$username', '$password', 'CURRENT_TIMESTAMP()
-   ')";
-   $result = mysqli_query($conn,$sql);
-   if($result){
-    $showAlert= true;
-   }
-
-
+$usertype = "student";
+$phone = $_POST["phone"];
+$email = $_POST['email'];
+if(filter_var($email,FILTER_VALIDATE_EMAIL)){
+  if($password == $cpassword && $exits==false){
+    $sql = "INSERT INTO `user1` (`id`, `username`, `phone`, `email`, `usertype`, `password`) VALUES ('', '$username', '$phone', '$email', '$usertype', '$password')";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+     $showAlert= true;
+    }
+   
+   
+ 
+ 
+ }
+ else{
+   echo "password and confirm password don't match";
+ }
+}else{
+  echo "email is not valid";
 }
 
 }
@@ -56,19 +67,32 @@ if($password == $cpassword && $exits==false){
        <div class="contianer">
         <h1 class="text-center">signup to our website</h1>
         <form action="/phpt/dir/dir2/signup.php" method="post" >
-  <div class="form-group col-md-6">
+        <div class="form-group col-md-6">
     <label for="username">username</label>
-    <input type="text" class="form-control" id="exampleInputEmai" name="username" aria-describedby="emailHelp" placeholder="username">
+    <input type="text" class="form-control" id="exampleInputEmail" name="username" aria-describedby="emailHelp" placeholder="username">
+
     
   </div>
   <div class="form-group col-md-6">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="password" name="password"  placeholder="Password">
+    <label for="phone">phone</label>
+    <input type="number" class="form-control" id="exampleInputEmail" name="phone" aria-describedby="emailHelp" placeholder="phone">
+    
   </div>
   <div class="form-group col-md-6">
-    <label for="exampleInputPassword1">confirm Password</label>
-    <input type="password" class="form-control" id="cpassword" name="cpassword"   placeholder="Password">
-    <small id="emailHelp" class="form-text text-muted">make sure to type the same password</small>
+    <label for="email">email</label>
+    <input type="email" class="form-control" id="exampleInputEmail" name="email" aria-describedby="emailHelp" placeholder="email">
+    
+  </div>
+  </div>
+  <div class="form-group col-md-6">
+    <label for="password">password</label>
+    <input type="password" class="form-control" id="exampleInputEmai" name="password" aria-describedby="emailHelp" placeholder="password">
+    
+  </div>
+  <div class="form-group col-md-6">
+    <label for="cpassword">cpassword</label>
+    <input type="password" class="form-control" id="exampleInputEmai" name="cpassword" aria-describedby="emailHelp" placeholder="cpassword">
+    
   </div>
   
   <button type="submit" class="btn btn-primary">SignUp</button>

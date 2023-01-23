@@ -11,5 +11,4 @@ class B extends A{
 }
 $obj = new B();
 $obj->calc(100, 20);
-
 ?>
